@@ -5,6 +5,11 @@ var less = require("gulp-less");
 var plumber = require("gulp-plumber");
 var sourcemap = require("gulp-sourcemaps");
 var server = require("browser-sync").create();
+var del = require("del");
+
+gulp.task("clean", function clean() {
+  return del("build")
+})
 
 gulp.task("css", function buildCSS () {
   return gulp.src("source/less/**/*.less")
@@ -40,5 +45,5 @@ gulp.task("server", function runServer() {
   //gulp.watch("source/js/*.js", gulp.series("js", "refresh"));
 })
 
-gulp.task("build", gulp.series("css", "html"))
+gulp.task("build", gulp.series("clean", "css", "html"))
 gulp.task("start", gulp.series("build", "server"));

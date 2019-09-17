@@ -8,10 +8,10 @@ var server = require("browser-sync").create();
 
 gulp.task("css", function buildCSS () {
   return gulp.src("source/less/**/*.less")
-    .pipe(gulp.plumber())
-    .pipe(gulp.sourcemap.init())
-    .pipe(gulp.less())
-    .pipe(gulp.sourcemap.write())
+    .pipe(plumber())
+    .pipe(sourcemap.init())
+    .pipe(less())
+    .pipe(sourcemap.write())
     .pipe(gulp.dest("build/css"))
     .pipe(server.stream());
 });
@@ -37,5 +37,8 @@ gulp.task("server", function runServer() {
 
   gulp.watch("source/less/**/*.less", gulp.series("css"));
   gulp.watch("source/*.html", gulp.series("html", "refresh"));
-  gulp.watch("source/js/*.js", gulp.series("js", "refresh"));
+  //gulp.watch("source/js/*.js", gulp.series("js", "refresh"));
 })
+
+gulp.task("build", gulp.series("css", "html"))
+gulp.task("start", gulp.series("build", "server"));

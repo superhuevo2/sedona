@@ -1,6 +1,7 @@
 {
   "name": "sedona",
   "version": "1.0.0",
+  "private": true,
   "description": "Учебный проект Седона",
   "devDependencies": {
     "@htmlacademy/editorconfig-cli": "1.x",
@@ -26,7 +27,7 @@
   "scripts": {
     "editorconfig": "editorconfig-cli",
     "stylelint": "stylelint \"source/less/**/*.less\" --syntax less",
-    "test": "nmp run editorconfig && npm run stylelint",
+    "test": "npm run editorconfig && npm run stylelint",
     "build": "gulp build",
     "start": "gulp start"
   },
